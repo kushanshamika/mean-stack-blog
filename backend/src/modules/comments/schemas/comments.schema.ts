@@ -8,6 +8,9 @@ export class Comment extends Document {
 
     @Prop({required:true})
     comment: string;
+
+    @Prop({required:true})
+    username: string;
 }
 
 export const CommentSchema = SchemaFactory.createForClass(Comment);
