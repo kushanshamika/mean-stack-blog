@@ -14,7 +14,7 @@ export class VotesService {
     }
 
     async upVote(name: string): Promise<Vote> {
-        return await this.voteModel.findOneAndUpdate({name:name}, {$inc: {votes:1}}, {useFindAndModify: false});
+        return await this.voteModel.findOneAndUpdate({name:name}, {$inc: {votes:1}}, {useFindAndModify: false, new:true});
     }
 
     async getVote(name: string): Promise<Vote> {
