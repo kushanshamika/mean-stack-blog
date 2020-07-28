@@ -1,0 +1,25 @@
+version: '3.7'
+
+services:
+  backend:
+    container_name: blog-backend
+    restart: unless-stopped
+    build:
+      context: backend/
+      dockerfile: Dockerfile
+    ports: 
+      - 8500:3000
+
+  frontend:
+    container_name: blog-frontend
+    build: 
+      context: frontend/
+      dockerfile: Dockerfile
+    ports:
+      - 80:3000
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+      - REACT_APP_SERVICE_URI=http://localhost:8500
+    depends_on: 
+      - backend
+    stdin_open: true
